@@ -105,6 +105,10 @@ const ProfileSchema = new mongoose.Schema({
       type: String,
     },
   },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Profile = new mongoose.model('Profole', ProfileSchema);
