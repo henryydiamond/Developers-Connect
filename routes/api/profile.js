@@ -71,8 +71,33 @@ router.post(
     if (skills) {
       profileFields.skills = skills.split(',').map(skill => skill.trim());
     }
-    console.log(profileFields.skills);
-    res.json('Hello');
+
+    // Build social objects
+    profileFields.social = {};
+    if (youtube) profileFields.social.youtube = youtube;
+    if (facebook) profileFields.social.facebook = facebook;
+    if (twitter) profileFields.social.profile = twitter;
+    if (instagram) profileFields.social.instagram = instagram;
+    if (linkedin) profileFields.social.linkedin = linkedin;
+
+    try {
+      let profile = await Profile.findOne({ user: req.user.id });
+      if (profile) {
+        // Update profile fields
+        profile = await Profile.findOneAndUpdate(
+          { user: req.user.id },
+          { $set: profileFields },
+          { new: true }
+        );
+        return res.json(profile);
+      }
+      profile = new Profile(profileFields);
+      await profile.save();
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.send(500).json('Server Error');
+    }
   }
 );
 
