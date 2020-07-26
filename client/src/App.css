@@ -309,6 +309,7 @@ button {
   width: 100%;
   top: 0;
   border-bottom: solid 1px var(--primary-color);
+
   opacity: 0.9;
 }
 
@@ -329,11 +330,16 @@ button {
 .navbar .welcome span {
   margin-right: 0.6rem;
 }
-
+.back {
+  background-image: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+}
 /* Landing Page */
 .landing {
   position: relative;
-  background: url('./img/showcase.jpg') no-repeat center center/cover;
+  /* background: url('./img/showcase.jpg') no-repeat center center/cover; */
+
+  background-color: #1494aa;
+  background-image: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
   height: 100vh;
 }
 
